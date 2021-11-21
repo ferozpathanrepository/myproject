@@ -1,0 +1,39 @@
+package testNGCrossBrowser;
+
+import org.apache.xml.security.binding.xmlenc11.DerivedKeyType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import pathConfiguration.PathConfig;
+
+public class Demo2 {
+	@Test
+	@Parameters("browser")
+	public void browser(String browsertype) throws InterruptedException {
+		if (browsertype.equalsIgnoreCase("dhrome")) {
+			System.out.println("Browser Type="+browsertype);
+			System.setProperty("webdriver.chrome.driver", PathConfig.driverPathNew);
+			WebDriver driver=new ChromeDriver();
+			driver.get(PathConfig.fbLoginPath);
+			driver.manage().window().maximize();
+			Thread.sleep(1000);
+			
+		} else if (browsertype.equalsIgnoreCase("chrome")) {
+			System.out.println("Browser type="+browsertype);
+			System.setProperty("webdriver.gecko.driver", PathConfig.fireFoxDriver);
+			WebDriver driver=new FirefoxDriver();
+			driver.get(PathConfig.appUrl);
+			driver.manage().window().maximize();
+			
+			
+			
+		} else {
+			System.out.println("invalid Browser");
+			
+		}
+
+		}
+	}
